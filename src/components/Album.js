@@ -31,17 +31,17 @@ class Album extends Component {
              <col id="song-duration-column" />
            </colgroup>
            <tbody>
-                 <div className= 'album list'>
-                 {
-                   this.state.album.songs.map( (song,index) =>
-               <tr>
-                  <td key={'number'}>{Math.max(1,index + 1)}</td>
-                  <td key={'title'}>{song.title}</td>
-                  <td key={'duration'}>{song.duration} seconds</td>
-               </tr>
-             )
-           }
-           </div>
+
+              {
+               this.state.album.songs.map( (song,index) =>
+                 <tr key={index}>
+                    <td >{Math.max(1,index + 1)}</td>
+                    <td >{song.title}</td>
+                    <td >{song.duration} seconds</td>
+                 </tr>
+                )
+              }
+
            </tbody>
            </table >
          }
