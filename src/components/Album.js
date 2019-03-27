@@ -55,7 +55,7 @@ class Album extends Component {
      } else if (this.state.onHover === index){
         return <span className='ion-play'></span>;
      } else {
-       return <span className='song-number'>{Math.max(1,index + 1)};</span>;
+       return <span className='song-number'>{Math.max(1,index + 1)}</span>;
        }
      }
 
@@ -91,4 +91,5 @@ class Album extends Component {
        </section>
      )
    }
+ }
 export default Album;
