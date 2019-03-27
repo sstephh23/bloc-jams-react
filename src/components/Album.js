@@ -51,9 +51,9 @@ class Album extends Component {
 
        hoverOver(song,index) {
        if (this.state.currentSong === song && this.state.isPlaying) {
-        return <span className='ion-pause'/>;
+        return <span className='ion-pause'></span>;
      } else if (this.state.onHover === index){
-        return <span className='ion-play'/>;
+        return <span className='ion-play'></span>;
      } else {
        return <span className='song-number'>{Math.max(1,index + 1)};</span>;
        }
