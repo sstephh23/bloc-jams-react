@@ -12,7 +12,9 @@ class Album extends Component {
        this.state = {
              album: album,
              currentSong: album.songs[0],
-             isPlaying: false
+             isPlaying: false,
+             lengthOfAlbum: album.songs.length
+
        };
        this.audioElement = document.createElement('audio');
        this.audioElement.src = album.songs[0].audioSrc;
@@ -50,7 +52,7 @@ class Album extends Component {
          this.setState({onHover: false});
        }
 
-       hoverOver(song,index) {
+     hoverOver(song,index) {
        if (this.state.currentSong === song && this.state.isPlaying) {
         return <span className='ion-pause'></span>;
      } else if (this.state.onHover === index){
@@ -70,7 +72,7 @@ class Album extends Component {
 
     handleNextClick() {
       const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
-      const newIndex = Math.max(currentIndex + 1);
+      const newIndex = Math.min(currentIndex + 1, this.state.lengthOfAlbum - 1);
       const newSong = this.state.album.songs[newIndex];
       this.setSong(newSong);
       this.play();
