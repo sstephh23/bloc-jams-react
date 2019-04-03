@@ -15,7 +15,8 @@ class Album extends Component {
              currentTime: 0,
              duration: album.songs[0].duration,
              isPlaying: false,
-             lengthOfAlbum: album.songs.length
+             lengthOfAlbum: album.songs.length,
+             currentVolume: 0
 
        };
        this.audioElement = document.createElement('audio');
@@ -50,6 +51,20 @@ class Album extends Component {
        this.audioElement.pause();
        this.setState({ isPlaying: false });
        }
+
+       componentDdMount() {
+         this.eventListeners = {
+           volumeupdate: e => {
+             this.setState({ currentVolume: this.audioElement.currentVolume });
+         }
+       };
+      this.audioElement.addEventListener('volumeupdate',this.eventListeners.volumeupdate);
+    }
+
+      componentWllUnmount() {
+        this.audioElement.src = null;
+        this.audioElement.removeEventListener('volumeupdate', this.eventListeners.volumeupdate);
+      }
 
        setSong(song) {
        this.audioElement.src = song.audioSrc;
@@ -106,6 +121,11 @@ class Album extends Component {
          this.setState({ currentTime: newTime });
        }
 
+       handleVolumeChange(e) {
+         const newVolume = this.audioElement.currentVolume * e.target.value;
+         this.setState({currentVolume: newVolume});
+       }
+
      render() {
        return (
        <section className="album">
@@ -140,10 +160,12 @@ class Album extends Component {
            currentSong={this.state.currentSong}
            currentTime={this.audioElement.currentTime}
            duration={this.audioElement.duration}
+           currentVolume={this.audioElement.currentVolume}
            handleSongClick={() => this.handleSongClick(this.state.currentSong)}
            handlePrevClick={() => this.handlePrevClick()}
            handleNextClick={() => this.handleNextClick()}
            handleTimeChange={(e) => this.handleTimeChange(e)}
+           handleVolumeChange={(e) => this.handleVolumeChange(e)}
          />
        </section>
      )
