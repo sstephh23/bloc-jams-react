@@ -24,22 +24,27 @@ class Album extends Component {
        }
 
        componentDidMount() {
-         this.eventListeners = {
-       timeupdate: e => {
-         this.setState({ currentTime: this.audioElement.currentTime });
-       },
-       durationchange: e => {
-         this.setState({ duration: this.audioElement.duration });
-       }
-     };
-     this.audioElement.addEventListener('timeupdate', this.eventListeners.timeupdate);
-     this.audioElement.addEventListener('durationchange', this.eventListeners.durationchange);
-       }
+        this.eventListeners = {
+          timeupdate: e => {
+             this.setState({ currentTime: this.audioElement.currentTime });
+          },
+          durationchange: e => {
+             this.setState({ duration: this.audioElement.duration });
+          },
+          volumeupdate: e => {
+             this.setState({ currentVolume: this.audioElement.currentVolume });
+          }
+        };
+        this.audioElement.addEventListener('timeupdate', this.eventListeners.timeupdate);
+        this.audioElement.addEventListener('durationchange', this.eventListeners.durationchange);
+        this.audioElement.addEventListener('volumeupdate',this.eventListeners.volumeupdate);
+        }
 
        componentWillUnmount() {
          this.audioElement.src = null;
          this.audioElement.removeEventListener('timeupdate', this.eventListeners.timeupdate);
          this.audioElement.removeEventListener('durationchange', this.eventListeners.durationchange);
+         this.audioElement.removeEventListener('volumeupdate', this.eventListeners.volumeupdate);
        }
 
        play() {
@@ -51,20 +56,6 @@ class Album extends Component {
        this.audioElement.pause();
        this.setState({ isPlaying: false });
        }
-
-       componentDdMount() {
-         this.eventListeners = {
-           volumeupdate: e => {
-             this.setState({ currentVolume: this.audioElement.currentVolume });
-         }
-       };
-      this.audioElement.addEventListener('volumeupdate',this.eventListeners.volumeupdate);
-    }
-
-      componentWllUnmount() {
-        this.audioElement.src = null;
-        this.audioElement.removeEventListener('volumeupdate', this.eventListeners.volumeupdate);
-      }
 
        setSong(song) {
        this.audioElement.src = song.audioSrc;
@@ -121,10 +112,11 @@ class Album extends Component {
          this.setState({ currentTime: newTime });
        }
 
-       handleVolumeChange(e) {
-         const newVolume = this.audioElement.currentVolume * e.target.value;
-         this.setState({currentVolume: newVolume});
-       }
+     handleVolumeChange(e) {
+       const newVolume = this.audioElement.currentVolume * e.target.value;
+       this.audioElement.currentVolume = newVolume;
+       this.setState({currentVolume: newVolume});
+     }
 
      render() {
        return (

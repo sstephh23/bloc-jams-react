@@ -33,10 +33,10 @@ import React, { Component } from 'react';
          <input
          type="range"
          className="seek-bar"
-         value={(this.props.currentVolume)}
+         value={this.props.currentVolume || 0}
          max="1"
          min="0"
-         step=".1"
+         step="0.1"
          onChange={this.props.handleVolumeChange}
          />
          <div className="icon ion-volume-high">{this.props.currentVolume}</div>
