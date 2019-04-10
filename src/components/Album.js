@@ -153,7 +153,7 @@ class Album extends Component {
                  <tr className="song" key={index} onClick={() => this.handleSongClick(song)} onMouseEnter={()=>this.mouseEnter(index)} onMouseLeave={()=>this.mouseLeave()}>
                    <td className='song-number'>{this.hoverOver(song,index)}</td>
                    <td >{song.title}</td>
-                   <td >{this.formatTime(song.duration)} seconds</td>
+                   <td >{this.formatTime(song.duration)}</td>
                  </tr>
                )
              }
