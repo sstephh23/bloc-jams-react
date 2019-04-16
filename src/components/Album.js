@@ -21,7 +21,7 @@ class Album extends Component {
        };
        this.audioElement = document.createElement('audio');
        this.audioElement.src = album.songs[0].audioSrc;
-       }
+  }
 
        componentDidMount() {
         this.eventListeners = {
@@ -133,7 +133,7 @@ class Album extends Component {
      render() {
        return (
        <section className="album">
-        <section id="album-info">
+        <section className="album-info">
         <img id="album-cover-art" src={this.state.album.albumCover} alt={this.state.album.title}/>
          <div className="album-details">
            <h1 id="album-title">{this.state.album.title}</h1>
@@ -141,9 +141,9 @@ class Album extends Component {
            <div id="release-info">{this.state.album.releaseInfo}</div>
          </div>
         </section>
-        <table id="song-list">
+        <table className="song-list">
            <colgroup>
-             <col id="song-number-column" />
+             <col className="song-number-column" />
              <col id="song-title-column" />
              <col id="song-duration-column" />
            </colgroup>
@@ -152,8 +152,8 @@ class Album extends Component {
                this.state.album.songs.map( (song,index) =>
                  <tr className="song" key={index} onClick={() => this.handleSongClick(song)} onMouseEnter={()=>this.mouseEnter(index)} onMouseLeave={()=>this.mouseLeave()}>
                    <td className='song-number'>{this.hoverOver(song,index)}</td>
-                   <td >{song.title}</td>
-                   <td >{this.formatTime(song.duration)}</td>
+                   <td className="name">{song.title}</td>
+                   <td className="duration">{this.formatTime(song.duration)}</td>
                  </tr>
                )
              }
