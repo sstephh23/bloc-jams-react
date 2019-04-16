@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #D3F3F3;
 }
 
 .App-logo {
@@ -9,7 +10,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: black;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -30,4 +31,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.song-number {
+  color: blue;
 }
