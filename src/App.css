@@ -34,9 +34,59 @@
 }
 
 .song-number {
-  color: blue;
+  background-color: #E2F7F7;
+  padding: 15px;
+  width: 50%;
 }
 
-# albuminfo {
-  color: blue;
+.song {
+  color: red;
+}
+
+.duration{
+  width: 50%;
+  background-color: #E2F7F7;
+}
+
+.album-details{
+  color:red;
+  background-color: #E2F7F7;
+  border: 10px dotted white;
+  border-radius: 15px;
+}
+
+.name {
+  background-color: #E2F7F7;
+}
+
+.player-bar {
+  color:red;
+  padding:50px;
+  border: 10px dotted white;
+  border-radius: 15px;
+}
+
+.song-list {
+  text-align: center;
+}
+
+h1 {
+  color:brown;
+  font-size: 3em;
+}
+
+h2 {
+  color:brown;
+}
+
+.landing {
+  color:red;
+  line-height: 300%;
+   border: 10px dotted brown;
+   border-radius: 20px;
+}
+
+nav {
+  font-size: 1em;
+  width: 10%;
 }
